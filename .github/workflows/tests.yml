@@ -20,7 +20,7 @@ jobs:
     environment: Testing
     strategy:
       matrix:
-        php-version: ['8.3', '8.4', '8.5']
+        php-version: ['8.4', '8.5']
 
     steps:
       - name: Checkout code
@@ -37,6 +37,9 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '22'
+
+      - name: Install Boost
+        run: php artisan boost:install --no-interaction
 
       - name: Install Node Dependencies
         run: npm i
