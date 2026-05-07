@@ -53,9 +53,6 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate
 
-      - name: Install Boost
-        run: php artisan boost:install --no-interaction
-
       - name: Build Assets
         run: npm run build
 
