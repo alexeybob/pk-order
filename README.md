@@ -6,7 +6,7 @@ Laravel project with a standard Docker local stack via Laravel Sail.
 
 The Docker setup is defined in `compose.yaml` and includes:
 
-- `laravel.test` (PHP 8.4 + Nginx)
+- `app` (PHP 8.4 + Nginx)
 - `mysql` (MySQL 8.4)
 - `redis`
 - `mailpit`
