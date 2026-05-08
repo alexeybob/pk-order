@@ -23,6 +23,7 @@ services:
             - sail
         depends_on:
             - mysql
+            - mysql-opencart
             - redis
             - mailpit
     mysql:
@@ -48,6 +49,29 @@ services:
                 - mysqladmin
                 - ping
                 - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
+    mysql-opencart:
+        image: 'mysql:5.5'
+        ports:
+            - '${FORWARD_OPENCART_DB_PORT:-3307}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${OPENCART_DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${OPENCART_DB_DATABASE}'
+            MYSQL_USER: '${OPENCART_DB_USERNAME}'
+            MYSQL_PASSWORD: '${OPENCART_DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'sail-mysql-opencart:/var/lib/mysql'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${OPENCART_DB_PASSWORD}'
             retries: 3
             timeout: 5s
     redis:
@@ -77,6 +101,8 @@ networks:
         driver: bridge
 volumes:
     sail-mysql:
+        driver: local
+    sail-mysql-opencart:
         driver: local
     sail-redis:
         driver: local

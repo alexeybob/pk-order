@@ -64,6 +64,25 @@ return [
             ]) : [],
         ],
 
+        'opencart' => [
+            'driver' => 'mysql',
+            'host' => env('OPENCART_DB_HOST', '127.0.0.1'),
+            'port' => env('OPENCART_DB_PORT', '3306'),
+            'database' => env('OPENCART_DB_DATABASE', 'opencart'),
+            'username' => env('OPENCART_DB_USERNAME', 'root'),
+            'password' => env('OPENCART_DB_PASSWORD', ''),
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => 'oc_',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
