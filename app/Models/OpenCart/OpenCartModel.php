@@ -98,4 +98,3 @@ class OpenCartModel extends Model
         return static::$resolvedTableAttributes[$class];
     }
 }
-

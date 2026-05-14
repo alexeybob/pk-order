@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Models\OpenCart;
+
+use App\Models\OpenCart\Attributes\Table;
+
+#[Table('oc_order_fraud', connection: 'opencart', primaryKey: 'order_id', incrementing: false, timestamps: false)]
+class OrderFraud extends OpenCartModel
+{
+    protected $fillable = [
+        'order_id',
+        'customer_id',
+        'country_match',
+        'country_code',
+        'high_risk_country',
+        'distance',
+        'ip_region',
+        'ip_city',
+        'ip_latitude',
+        'ip_longitude',
+        'ip_isp',
+        'ip_org',
+        'ip_asnum',
+        'ip_user_type',
+        'ip_country_confidence',
+        'ip_region_confidence',
+        'ip_city_confidence',
+        'ip_postal_confidence',
+        'ip_postal_code',
+        'ip_accuracy_radius',
+        'ip_net_speed_cell',
+        'ip_metro_code',
+        'ip_area_code',
+        'ip_time_zone',
+        'ip_region_name',
+        'ip_domain',
+        'ip_country_name',
+        'ip_continent_code',
+        'ip_corporate_proxy',
+        'anonymous_proxy',
+        'proxy_score',
+        'is_trans_proxy',
+        'free_mail',
+        'carder_email',
+        'high_risk_username',
+        'high_risk_password',
+        'bin_match',
+        'bin_country',
+        'bin_name_match',
+        'bin_name',
+        'bin_phone_match',
+        'bin_phone',
+        'customer_phone_in_billing_location',
+        'ship_forward',
+        'city_postal_match',
+        'ship_city_postal_match',
+        'score',
+        'explanation',
+        'risk_score',
+        'queries_remaining',
+        'maxmind_id',
+        'error',
+        'date_added',
+    ];
+
+    protected $casts = [
+        'order_id' => 'integer',
+        'customer_id' => 'integer',
+        'distance' => 'integer',
+        'ip_latitude' => 'float',
+        'ip_longitude' => 'float',
+        'ip_asnum' => 'integer',
+        'ip_accuracy_radius' => 'integer',
+        'ip_metro_code' => 'integer',
+        'ip_area_code' => 'integer',
+        'proxy_score' => 'integer',
+        'score' => 'float',
+        'risk_score' => 'float',
+        'queries_remaining' => 'integer',
+    ];
+}
